@@ -1,5 +1,5 @@
 {
-  "name": "the-refinery-event-admin",
+  "name": "react-redux-material-boilerplate",
   "version": "0.0.0",
   "main": "server/app.js",
   "dependencies": {
@@ -98,7 +98,6 @@
   "scripts": {
     "start": "cross-env node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --config webpack.config.js",
     "build": "node ./node_modules/webpack/bin/webpack -p --progress --config webpack.config.build.js",
-    "deploy": "rsync -av ./public/ deploy@173.255.233.186:/var/www/the-refinery-event-admin",
     "analyze": "./node_modules/webpack/bin/webpack.js --config webpack.config.js --profile --json > stats.json && ./node_modules/webpack-bundle-size-analyzer/webpack-bundle-size-analyzer stats.json",
     "cosmos": "node ./node_modules/react-cosmos/bin/cosmos",
     "cosmos:export": "node ./node_modules/react-cosmos/bin/cosmos-export"

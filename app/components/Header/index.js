@@ -20,7 +20,7 @@ import People from '@material-ui/icons/People';
 import Home from '@material-ui/icons/Home';
 import Settings from '@material-ui/icons/Settings';
 import { CalendarToday as Calendar, Web, Graph } from '@material-ui/icons';
-import Logo from '../../../assets/images/refinery-logo.png';
+import Logo from '../../../assets/images/logo.png';
 
 const styles = theme => ({
   root: {

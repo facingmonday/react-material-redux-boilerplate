@@ -1,5 +1,5 @@
 export default {
-  API_HOST: 'http://localhost:9000',
+  API_HOST: 'http://localhost:9001',
   STRIPE_PUBLIC_KEY: 'hfbkhjadsfbajkhdfb',
   ROLES: {
     ADMIN: 'admin',
