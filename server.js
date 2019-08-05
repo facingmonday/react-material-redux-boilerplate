@@ -56,15 +56,16 @@ app.get('/products', (req, res) => {
   });
 });
 app.get('/api/users', (req, res) => {
+    //return res.sendStatus(500);
     return res.status(200).json({
-        stats: 2,
+        stats: 1,
         results: [
-        {
-            id: '1239801238',
-            role: 'admin',
-            name: 'Test User',
-            email: 'test@test.com',
-        },
+          {
+              id: '1239801238',
+              role: 'admin',
+              name: 'Test User',
+              email: 'test@test.com',
+          },
         ]
     });
 });

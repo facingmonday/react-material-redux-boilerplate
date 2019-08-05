@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
     case FETCH_USERS_SUCCESS:
       return { ...state, usersList: { users: action.results, stats: action.stats, error: null, loading: false } };
     case FETCH_USERS_FAILURE:
-      return { ...state, usersList: { ...initialState.usersList, loading: false, error: action.error } };
+      return { ...state, usersList: { ...initialState.usersList, loading: false, error: action.error } };  
     case RESET:
       return initialState;
     default:
