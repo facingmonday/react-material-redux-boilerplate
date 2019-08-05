@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { STRIPE_PUBLIC_KEY } from '../../../config/constants';
+import { STRIPE_PUBLIC_KEY } from '../../../../config/constants';
 
 
 class CreditCardFields extends Component {

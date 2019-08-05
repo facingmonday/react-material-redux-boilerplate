@@ -16,7 +16,7 @@ import {
   fetchMe as fetchMeApi,
   loginUser as loginUserApi,
 } from '../apis/auth';
-import { getCookie, setCookie, deleteCookie } from '../utils/cookie';
+import { getCookie, setCookie, deleteCookie } from '../utils';
 
 function* performFetchMeAction(action) {
   console.log('performFetchMeAction');

@@ -1,5 +1,4 @@
-import { buildUrl } from './utils';
-import { getCookie } from '../utils/cookie';
+import { buildUrl, getCookie } from '../utils';
 
 export function fetchUsers() {
   const url = buildUrl(`/api/users`);

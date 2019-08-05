@@ -1,6 +1,4 @@
-import axios from 'axios';
-import { buildUrl } from './utils';
-import { getCookie } from '../utils/cookie';
+import { buildUrl, getCookie } from '../utils';
 
 export function fetchMe() {
   const url = buildUrl('/api/users/me');

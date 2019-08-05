@@ -25,7 +25,7 @@ import {
 import {
   fetchMe,
 } from '../actions/auth';
-import { getCookie, setCookie, deleteCookie } from '../utils/cookie';
+import { getCookie } from '../utils';
 
 class App extends Component {
   componentWillMount() {

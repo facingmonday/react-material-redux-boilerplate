@@ -9,7 +9,7 @@ import DataGrid from '../core/DataGrid';
 
 const styles = () => ({
   container: {
-    padding: '0px 40px',
+    padding: '20px 40px',
   }
 });
 
@@ -27,10 +27,11 @@ class UsersPage extends Component { // eslint-disable-line react/prefer-stateles
             data={users}
             showEdit
             showDelete
+            enableCreate
             columns={[
               {
                 label: 'ID',
-                field: '_id',
+                field: 'id',
                 props: {
                   xs: 2,
                 },

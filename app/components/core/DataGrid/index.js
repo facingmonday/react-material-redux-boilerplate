@@ -209,13 +209,16 @@ DataGrid.defaultProps = {
 DataGrid.propTypes = {
   /* Internal object of styles passed to props withStyles*/
   classes: PropTypes.object,
+  
   /* The field in the row that will be used as the id */
   idField: PropTypes.string,
+  
   /* An array of actions (buttons in the upper left) */
-  // actions: PropTypes.array,
   actions: PropTypes.array,
+  
   /* The data set to be displayed */
   data: PropTypes.array,
+  
   /* The column definition for the data grid */
   columns: PropTypes.arrayOf(
     PropTypes.shape({
@@ -231,40 +234,58 @@ DataGrid.propTypes = {
       render: PropTypes.func,
     }),
   ),
+  
   /* The total number of records available */
   count: PropTypes.number,
+  
   /* The page to start on */
   offset: PropTypes.number,
+  
   /* The number of records to show in the data grid */
   limit: PropTypes.number,
+  
   /* The display properties that are passed to the row */
   rowProps: PropTypes.object,
+  
   /* Function to be called when you change the page */
   onChangeOffset: PropTypes.func,
+  
   /* Function to be called when you change the page */
   onChangeLimit: PropTypes.func,
+  
   /* Boolean on whether to show the search field or not */
   showSearch: PropTypes.bool,
+  
   /* Whether or not to show the create button */
   enableCreate: PropTypes.bool,
+  
   /* Text to display on the create button */
   createLabel: PropTypes.string,
+  
   /* The placeholder text for the search input */
   searchInputLabel: PropTypes.string,
+  
   /* Function to be called when you change the page */
   onChangeSearch: PropTypes.func,
+  
   /* Whether to show the edit pencil(edit) in the row */
   showEdit: PropTypes.bool,
+  
   /* Whether to show the delete icon in the row */
   showDelete: PropTypes.bool,
+  
   /* Function to be called when you click the row */
   onClickRow: PropTypes.func,
+  
   /* Function to be called when you create a new row */
   onCreate: PropTypes.func,
+  
   /* Function to be called when you update a row */
   onUpdate: PropTypes.func,
+  
   /* Function to be called when you delete the page */
   onDelete: PropTypes.func,
+  
   /* Function to be called when you click on a column header */
   onSort: PropTypes.func,
   loading: PropTypes.bool,
@@ -274,8 +295,10 @@ DataGrid.propTypes = {
   leftButtonOnClick: PropTypes.func,
   leftButtonLabel: PropTypes.string,
   leftButtonProps: PropTypes.object,
+  
   /* Passing an optional class name from the parent component to the data grid wrapping element */
   tableClassName: PropTypes.string,
+  
   /* Array of options of how many rows to display in pagination */
   rowsPerPageOptions: PropTypes.array,
 };
