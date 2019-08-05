@@ -43,8 +43,12 @@ const initialState = {
 };
 export default (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_USERS:
+      return { ...state, usersList: { ...initialState.usersList, loading: true } };
     case FETCH_USERS_SUCCESS:
       return { ...state, usersList: { users: action.results, stats: action.stats, error: null, loading: false } };
+    case FETCH_USERS_FAILURE:
+      return { ...state, usersList: { ...initialState.usersList, loading: false, error: action.error } };
     case RESET:
       return initialState;
     default:
