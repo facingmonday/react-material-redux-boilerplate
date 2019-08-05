@@ -40,10 +40,11 @@ export function fetchUsers(options) {
     options
   };
 }
-export function fetchUsersSuccess(users) {
+export function fetchUsersSuccess(response) {
   return {
     type: FETCH_USERS_SUCCESS,
-    users,
+    stats: response.stats,
+    results: response.results
   };
 }
 export function fetchUsersFailure(error) {

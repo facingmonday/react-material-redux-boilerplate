@@ -37,6 +37,7 @@ function* performFetchUsersAction(action) {
       yield put(fetchUsersSuccess(response));
     }
   } catch (e) {
+    console.log('e', e);
     yield put(fetchUsersFailure(e));
   }
 }

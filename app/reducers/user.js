@@ -17,6 +17,7 @@ const initialState = {
     users: [],
     error: null,
     loading: false,
+    stats: null,
   },
   loggedInUser: {
     authenticated: false,
@@ -43,7 +44,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_USERS_SUCCESS:
-      return state;
+      return { ...state, usersList: { users: action.results, stats: action.stats, error: null, loading: false } };
     case RESET:
       return initialState;
     default:

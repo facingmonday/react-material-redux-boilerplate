@@ -42,7 +42,9 @@ class App extends Component {
           <SingleComponent exact path={'/login'} component={Login} />
           <SingleComponent exact path={'/signup'} component={SignUp} />
           <FullPage exact path={'/'} component={Dashboard} />
+          <FullPage exact path={'/profile'} component={Account} />
           <FullPage exact path={'/account'} component={Account} />
+          <FullPage exact path={'/settings'} component={Account} />
           <FullPage exact path={'/users'} component={Users} />
           <FullPage exact path={'/user/:id'} component={User} />
         </Switch>

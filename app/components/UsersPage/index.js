@@ -18,13 +18,13 @@ class UsersPage extends Component { // eslint-disable-line react/prefer-stateles
     this.props.fetchUsers();
   }
   render() {
-    const { classes } = this.props;
+    const { classes, users: { users, loading, error} } = this.props;
     return (
       <Grid container className={classes.container}>
         <Grid item xs={12}>
           <DataGrid
             idField={'_id'}
-            data={this.props.users}
+            data={users}
             showEdit
             showDelete
             columns={[

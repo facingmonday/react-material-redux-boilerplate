@@ -109,44 +109,12 @@ class MenuAppBar extends React.Component {
                   <ListItemText primary={'Dashboard'} />
                 </ListItem>
               </Link>
-              <Link to={'/sites'}>
-                <ListItem button key={'sites'}>
-                  <ListItemIcon>
-                    <Web />
-                  </ListItemIcon>
-                  <ListItemText primary={'Sites'} />
-                </ListItem>
-              </Link>
-              <Link to={'/clients'}>
-                <ListItem button key={'Clients'}>
-                  <ListItemIcon>
-                    <People />
-                  </ListItemIcon>
-                  <ListItemText primary={'Clients'} />
-                </ListItem>
-              </Link>
               <Link to={'/users'}>
                 <ListItem button key={'Users'}>
                   <ListItemIcon>
                     <People />
                   </ListItemIcon>
                   <ListItemText primary={'Users'} />
-                </ListItem>
-              </Link>
-              <Link to={'/events'}>
-                <ListItem button key={'Events'}>
-                  <ListItemIcon>
-                    <Calendar />
-                  </ListItemIcon>
-                  <ListItemText primary={'Events'} />
-                </ListItem>
-              </Link>
-              <Link to={'/stats'}>
-                <ListItem button key={'stats'}>
-                  <ListItemIcon>
-                    <Calendar />
-                  </ListItemIcon>
-                  <ListItemText primary={'Stats'} />
                 </ListItem>
               </Link>
               <Link to={'/settings'}>

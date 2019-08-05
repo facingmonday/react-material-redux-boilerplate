@@ -1,4 +1,5 @@
 import { buildUrl } from './utils';
+import { getCookie } from '../utils/cookie';
 
 export function fetchUsers() {
   const url = buildUrl(`/api/users`);
@@ -13,15 +14,13 @@ export function fetchUsers() {
     credentials: 'include',
   })
     .then((response) => {
+      console.log('response', response);
       if (response.status === 200) {
         return response.json();
       }
-      if (response.status === 401) {
-        const e = new Error();
-        e.code = 401;
-        throw e;
-      }
-      return {};
+      const e = new Error();
+      e.code = response.status;
+      throw e;
     })
     ;
 }

@@ -17,12 +17,9 @@ export function fetchMe() {
       if (response.status === 200) {
         return response.json();
       }
-      if (response.status === 401) {
-        const e = new Error();
-        e.code = 401;
-        throw e;
-      }
-      return {};
+      const e = new Error();
+      e.code = 401;
+      throw e;
     })
     ;
 }
