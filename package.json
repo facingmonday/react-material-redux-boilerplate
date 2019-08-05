@@ -69,6 +69,10 @@
     "directory-named-webpack-plugin": "^2.3.0",
     "dotenv": "^8.0.0",
     "ejs-loader": "^0.3.0",
+    "eslint": "^6.1.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-redux-saga": "^1.0.0",
     "express": "^4.17.1",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^2.30.1",
@@ -108,7 +112,6 @@
   "private": true,
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": "airbnb",
     "env": {
       "browser": true,
       "node": true,
@@ -119,6 +122,9 @@
       "redux-saga",
       "react",
       "jsx-a11y"
+    ],
+    "extends": [
+      "eslint:recommended"
     ],
     "parserOptions": {
       "ecmaVersion": 6,
@@ -146,7 +152,6 @@
       "import/no-dynamic-require": 0,
       "import/no-extraneous-dependencies": 0,
       "import/no-named-as-default": 0,
-      "import/no-unresolved": 2,
       "import/no-webpack-loader-syntax": 0,
       "import/prefer-default-export": 0,
       "indent": [
@@ -158,7 +163,6 @@
       ],
       "jsx-a11y/aria-props": 2,
       "jsx-a11y/heading-has-content": 0,
-      "jsx-a11y/href-no-hash": 2,
       "jsx-a11y/label-has-for": 2,
       "jsx-a11y/mouse-events-have-key-events": 2,
       "jsx-a11y/role-has-required-aria-props": 2,
@@ -182,6 +186,7 @@
         2,
         "multiline"
       ],
+      "react/jsx-uses-vars": 1,
       "react/jsx-filename-extension": 0,
       "react/jsx-no-target-blank": 0,
       "react/require-default-props": 0,

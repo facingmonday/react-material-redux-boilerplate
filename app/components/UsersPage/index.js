@@ -7,10 +7,10 @@ import {
 
 import DataGrid from '../core/DataGrid';
 
-const styles = () => ({
+const styles = ()=> ({
   container: {
     padding: '20px 40px',
-  }
+  },
 });
 
 class UsersPage extends Component { // eslint-disable-line react/prefer-stateless-function
