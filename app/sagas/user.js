@@ -1,20 +1,12 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
-import {
-  FETCH_USERS,
-  FETCH_USER,
-  CREATE_USER,
-  UPDATE_USER,
-  DELETE_USER,
-} from '../constants/user';
+import { FETCH_USERS, FETCH_USER, SAVE_USER, DELETE_USER } from '../constants/user';
 import {
   fetchUsersSuccess,
   fetchUsersFailure,
   fetchUserSuccess,
   fetchUserFailure,
-  createUserSuccess,
-  createUserFailure,
-  updateUserSuccess,
-  updateUserFailure,
+  saveUserSuccess,
+  saveUserFailure,
   deleteUserSuccess,
   deleteUserFailure,
 } from '../actions/user';
@@ -37,7 +29,6 @@ function* performFetchUsersAction(action) {
       yield put(fetchUsersSuccess(response));
     }
   } catch (e) {
-    console.log('e', e);
     yield put(fetchUsersFailure(e));
   }
 }
@@ -54,30 +45,18 @@ function* performFetchUserAction(action) {
     yield put(fetchUserFailure(e));
   }
 }
-export function* createUserSaga() {
-  yield takeLatest(CREATE_USER, performCreateUserAction);
+
+export function* saveUserSaga() {
+  yield takeLatest(SAVE_USER, performSaveUserAction);
 }
-function* performCreateUserAction(action) {
+function* performSaveUserAction(action) {
   try {
-    const response = yield call(createUserApi, action.user);
+    const response = action.user.id ? yield call(updateUserApi, action.user) : yield call(createUserApi, action.user);
     if (response) {
-      yield put(createUserSuccess(response));
+      yield put(saveUserSuccess(response));
     }
   } catch (e) {
-    yield put(createUserFailure(e));
-  }
-}
-export function* updateUserSaga() {
-  yield takeLatest(UPDATE_USER, performUpdateUserAction);
-}
-function* performUpdateUserAction(action) {
-  try {
-    const response = yield call(updateUserApi, action.user);
-    if (response) {
-      yield put(updateUserSuccess(response));
-    }
-  } catch (e) {
-    yield put(updateUserFailure(e));
+    yield put(saveUserFailure(e));
   }
 }
 export function* deleteUserSaga() {
@@ -95,11 +74,5 @@ function* performDeleteUserAction(action) {
 }
 
 export default function* defaultSaga() {
-  return yield all([
-    fetchUsersSaga(),
-    // fetchUserSaga(),
-    // createUserSaga(),
-    // updateUserSaga(),
-    // deleteUserSaga(),
-  ]);
+  return yield all([fetchUsersSaga(), fetchUserSaga(), saveUserSaga(), deleteUserSaga()]);
 }

@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class AccountPage extends Component {
-    render() {
-        const { user } = this.props;
-        return (
-            <div>
-                Account
-            </div>
-        );
-    }
-}
+const AccountPage = props => {
+  const { user } = props;
+  return <div>Account {`${user.name}`}</div>;
+};
+
+AccountPage.propTypes = {
+  user: PropTypes.shape,
+};
 
 export default AccountPage;

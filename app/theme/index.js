@@ -1,4 +1,4 @@
-import constants from './constants';
+import constants from './palette';
 import typography from './typeography';
 import overrides from './overrides';
 

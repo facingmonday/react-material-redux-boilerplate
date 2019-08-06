@@ -37,7 +37,7 @@ export function fetchDashboardFailure(error) {
 export function fetchDashboards(options) {
   return {
     type: FETCH_DASHBOARDS,
-    options
+    options,
   };
 }
 export function fetchDashboardsSuccess(dashboards) {

@@ -12,12 +12,13 @@ import theme from './theme';
 
 const store = configureStore();
 
-ReactDOM.render((
+ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ThemeProvider theme={createMuiTheme(theme)}>
         <App history={history} />
       </ThemeProvider>
     </ConnectedRouter>
-  </Provider>
-), document.getElementById('app'));
+  </Provider>,
+  document.getElementById('app'),
+);

@@ -19,7 +19,6 @@ import Divider from '@material-ui/core/Divider';
 import People from '@material-ui/icons/People';
 import Home from '@material-ui/icons/Home';
 import Settings from '@material-ui/icons/Settings';
-import { CalendarToday as Calendar, Web, Graph } from '@material-ui/icons';
 import Logo from '../../../assets/images/logo.png';
 
 const styles = theme => ({
@@ -58,11 +57,11 @@ class MenuAppBar extends React.Component {
     menuOpen: false,
     anchorEl: null,
   };
+
   toggleMenu = () => {
-    this.setState({
-      menuOpen: !this.state.menuOpen,
-    });
-  }
+    this.setState(prevState => ({ menuOpen: !prevState.menuOpen }));
+  };
+
   handleChange = event => {
     this.setState({ auth: event.target.checked });
   };
@@ -73,6 +72,7 @@ class MenuAppBar extends React.Component {
 
   handleClose = () => {
     this.setState({ anchorEl: null });
+    this.props.logout();
   };
 
   render() {
@@ -91,7 +91,7 @@ class MenuAppBar extends React.Component {
           }}
         >
           <div className={classes.drawerHeader}>
-            <img className={classes.logo} src={Logo} alt={'Admin Logo'} />
+            <img className={classes.logo} src={Logo} alt="Admin Logo" />
           </div>
           <Divider />
           <div
@@ -101,28 +101,28 @@ class MenuAppBar extends React.Component {
             onKeyDown={() => this.toggleMenu(false)}
           >
             <List>
-              <Link to={'/'}>
-                <ListItem button key={'Dashboard'} className={classes}>
+              <Link to="/">
+                <ListItem button key="Dashboard" className={classes}>
                   <ListItemIcon>
                     <Home />
                   </ListItemIcon>
-                  <ListItemText primary={'Dashboard'} />
+                  <ListItemText primary="Dashboard" />
                 </ListItem>
               </Link>
-              <Link to={'/users'}>
-                <ListItem button key={'Users'}>
+              <Link to="/users">
+                <ListItem button key="Users">
                   <ListItemIcon>
                     <People />
                   </ListItemIcon>
-                  <ListItemText primary={'Users'} />
+                  <ListItemText primary="Users" />
                 </ListItem>
               </Link>
-              <Link to={'/settings'}>
-                <ListItem button key={'Settings'}>
+              <Link to="/settings">
+                <ListItem button key="Settings">
                   <ListItemIcon>
                     <Settings />
                   </ListItemIcon>
-                  <ListItemText primary={'Settings'} />
+                  <ListItemText primary="Settings" />
                 </ListItem>
               </Link>
             </List>
@@ -134,7 +134,7 @@ class MenuAppBar extends React.Component {
             <IconButton className={classes.menuButton} aria-label="Menu">
               <MenuIcon onClick={() => this.toggleMenu()} />
             </IconButton>
-            <Typography variant="h6" color="inherit" className={classes.grow}></Typography>
+            <Typography variant="h6" color="inherit" className={classes.grow} />
             {auth && (
               <div>
                 <IconButton
@@ -159,11 +159,19 @@ class MenuAppBar extends React.Component {
                   open={open}
                   onClose={this.handleClose}
                 >
-                  <MenuItem onClick={this.handleClose} component={Link} to={'/profile'}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose} component={Link} to={'/account'}>Account</MenuItem>
-                  <MenuItem onClick={this.handleClose} component={Link} to={'/help'}>Help</MenuItem>
+                  <MenuItem onClick={this.handleClose} component={Link} to="/profile">
+                    Profile
+                  </MenuItem>
+                  <MenuItem onClick={this.handleClose} component={Link} to="/account">
+                    Account
+                  </MenuItem>
+                  <MenuItem onClick={this.handleClose} component={Link} to="/help">
+                    Help
+                  </MenuItem>
                   <Divider />
-                  <MenuItem onClick={this.handleClose} onClick={() => this.props.logout()} to={'/logout'}>Logout</MenuItem>
+                  <MenuItem onClick={this.handleClose} to="/logout">
+                    Logout
+                  </MenuItem>
                 </Menu>
               </div>
             )}
@@ -176,6 +184,7 @@ class MenuAppBar extends React.Component {
 
 MenuAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
+  logout: PropTypes.func,
 };
 
 export default withStyles(styles)(MenuAppBar);

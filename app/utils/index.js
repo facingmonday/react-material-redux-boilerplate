@@ -1,17 +1,12 @@
-import config from '../../config/constants';
-//import Cookies from 'universal-cookie';
-//const cookies = new Cookies();
+import { API_HOST } from '../../config/constants';
 
-export const setCookie = (name, value, options = {}) => {
-    return window.localStorage.setItem(name, value);
-};
+// import Cookies from 'universal-cookie';
+// const cookies = new Cookies();
 
-export const getCookie = name => {
-    return window.localStorage.getItem(name);
-}
+export const setCookie = (name, value) => window.localStorage.setItem(name, value);
 
-export const deleteCookie = name => {
-    return window.localStorage.removeItem(name);
-}
+export const getCookie = name => window.localStorage.getItem(name);
 
-export const buildUrl  = path => `${config.API_HOST}${path}`;
+export const deleteCookie = name => window.localStorage.removeItem(name);
+
+export const buildUrl = path => `${API_HOST}${path}`;

@@ -1,36 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { fetchUser, updateActiveUser, saveUser, deleteUser } from '../actions/user';
 
-import { selectActiveUser as selectUser } from '../selectors/user';
-
-export class User extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
-}
-
-User.propTypes = {
-  fetchUser: PropTypes.func,
-};
+import { selectActiveUser } from '../selectors/user';
+import UserPage from '../components/UserPage';
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUser(),
+  user: selectActiveUser(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchUser: () => dispatch(fetchUser()),
+    fetchUser: userId => dispatch(fetchUser(userId)),
+    saveUser: user => dispatch(saveUser(user)),
+    updateUser: user => dispatch(updateActiveUser(user)),
+    deleteUser: userId => dispatch(deleteUser(userId)),
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
-export default compose(
-  withConnect,
-)(User);
+export default compose(withConnect)(UserPage);

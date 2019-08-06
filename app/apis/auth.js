@@ -10,16 +10,14 @@ export function fetchMe() {
       Authorization: `Bearer ${getCookie('tf-auth')}`,
     }),
     timeout: 5000,
-  })
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json();
-      }
-      const e = new Error();
-      e.code = 401;
-      throw e;
-    })
-    ;
+  }).then(response => {
+    if (response.status === 200) {
+      return response.json();
+    }
+    const e = new Error();
+    e.code = 401;
+    throw e;
+  });
 }
 export function loginUser(credentials) {
   const url = buildUrl('/auth/local');
@@ -32,17 +30,15 @@ export function loginUser(credentials) {
     }),
     mode: 'cors',
     body: JSON.stringify(credentials),
-  })
-    .then((response) => {
-      if (response.status === 200) {
-        return response.json();
-      }
-      if (response.status === 401) {
-        const e = new Error();
-        e.code = 401;
-        throw e;
-      }
-      return {};
-    })
-    ;
+  }).then(response => {
+    if (response.status === 200) {
+      return response.json();
+    }
+    if (response.status === 401) {
+      const e = new Error();
+      e.code = 401;
+      throw e;
+    }
+    return {};
+  });
 }

@@ -1,25 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  IconButton,
-} from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import { Delete } from '@material-ui/icons';
 
 const RowActions = props => (
   <div>
-    {
-      props.showEdit &&
-      <IconButton onClick={(e) => { e.stopPropagation(); props.onEdit(props.id); }}>
+    {props.showEdit && (
+      <IconButton
+        onClick={e => {
+          console.log('onClick', props);
+          e.stopPropagation();
+          props.onEdit(props.id);
+        }}
+      >
         <EditIcon />
       </IconButton>
-    }
-    {
-      props.showDelete &&
-      <IconButton onClick={(e) => { e.stopPropagation(); props.onDelete(props.id); }}>
+    )}
+    {props.showDelete && (
+      <IconButton
+        onClick={e => {
+          e.stopPropagation();
+          props.onDelete(props.id);
+        }}
+      >
         <Delete />
       </IconButton>
-    }
+    )}
   </div>
 );
 

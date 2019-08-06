@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Grid,
-  CircularProgress,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from '@material-ui/core';
+import { Grid, CircularProgress, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { Chart } from 'primereact/chart';
 import Home from '@material-ui/icons/Home';
 
@@ -15,10 +8,12 @@ class Dashboard extends Component {
   static propTypes = {
     fetchDashboard: PropTypes.object,
     dashboard: PropTypes.object,
-  }
+  };
+
   componentWillMount() {
     this.props.fetchDashboard();
   }
+
   renderDashboard = (news, key) => {
     const { headline, story } = news;
     return (
@@ -26,7 +21,8 @@ class Dashboard extends Component {
         {headline} - {story}
       </div>
     );
-  }
+  };
+
   render() {
     const { loading, error } = this.props.dashboard;
     const data = {
@@ -49,24 +45,21 @@ class Dashboard extends Component {
       ],
     };
 
-
     if (loading) {
-      return (<CircularProgress />);
+      return <CircularProgress />;
     }
     if (error) {
-      return (
-        <p>{error}</p>
-      );
+      return <p>{error}</p>;
     }
     return (
       <Grid container spacing={24}>
         <Grid item xs={2}>
           <List>
-            <ListItem button key={'Dashboard'}>
+            <ListItem button key="Dashboard">
               <ListItemIcon>
                 <Home />
               </ListItemIcon>
-              <ListItemText primary={'Dashboard'} />
+              <ListItemText primary="Dashboard" />
             </ListItem>
           </List>
         </Grid>

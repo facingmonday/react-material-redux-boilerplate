@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Button, withStyles } from '@material-ui/core';
 
-import DataGrid from '../core/DataGrid';
+import DataGrid from '../DataGrid';
 
 const styles = () => ({
   container: {
@@ -25,19 +25,16 @@ class UsersPage extends Component {
       <Grid container className={classes.container}>
         <Grid item xs={12}>
           <DataGrid
-            idField="_id"
+            idField="id"
             data={users}
             showEdit
             showDelete
             enableCreate
+            onEdit={id => this.props.history.push(`/users/${id}`)}
             header={
               <Grid container>
                 <Grid item xs={12} sm={9}>
-                  <Button
-                    variant="contained"
-                    color="default"
-                    onClick={() => this.props.navigate('/users/create')}
-                  >
+                  <Button variant="contained" color="default" onClick={() => this.props.history.push('/users/create')}>
                     {'Add'}
                   </Button>
                 </Grid>
@@ -47,7 +44,7 @@ class UsersPage extends Component {
             columns={[
               {
                 label: 'ID',
-                field: '_id',
+                field: 'id',
                 props: {
                   xs: 2,
                 },

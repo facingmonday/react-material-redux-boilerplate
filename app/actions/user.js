@@ -5,12 +5,11 @@ import {
   FETCH_USERS,
   FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE,
-  CREATE_USER,
-  CREATE_USER_SUCCESS,
-  CREATE_USER_FAILURE,
-  UPDATE_USER,
-  UPDATE_USER_SUCCESS,
-  UPDATE_USER_FAILURE,
+  SAVE_USER,
+  SAVE_USER_SUCCESS,
+  SAVE_USER_FAILURE,
+  UPDATE_ACTIVE_USER,
+  RESET_ACTIVE_USER,
   DELETE_USER,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILURE,
@@ -37,14 +36,14 @@ export function fetchUserFailure(error) {
 export function fetchUsers(options) {
   return {
     type: FETCH_USERS,
-    options
+    options,
   };
 }
 export function fetchUsersSuccess(response) {
   return {
     type: FETCH_USERS_SUCCESS,
     stats: response.stats,
-    results: response.results
+    results: response.results,
   };
 }
 export function fetchUsersFailure(error) {
@@ -53,40 +52,34 @@ export function fetchUsersFailure(error) {
     error,
   };
 }
-export function createUser(user) {
+export function saveUser(user) {
   return {
-    type: CREATE_USER,
+    type: SAVE_USER,
     user,
   };
 }
-export function createUserSuccess(user) {
+export function saveUserSuccess(user) {
   return {
-    type: CREATE_USER_SUCCESS,
+    type: SAVE_USER_SUCCESS,
     user,
   };
 }
-export function createUserFailure(error) {
+export function saveUserFailure(error) {
   return {
-    type: CREATE_USER_FAILURE,
+    type: SAVE_USER_FAILURE,
     error,
   };
 }
-export function updateUser(user) {
+export function updateActiveUser(user) {
   return {
-    type: UPDATE_USER,
+    type: UPDATE_ACTIVE_USER,
     user,
   };
 }
-export function updateUserSuccess(user) {
+export function resetActiveUser(data) {
   return {
-    type: UPDATE_USER_SUCCESS,
-    user,
-  };
-}
-export function updateUserFailure(error) {
-  return {
-    type: UPDATE_USER_FAILURE,
-    error,
+    type: RESET_ACTIVE_USER,
+    data,
   };
 }
 export function deleteUser(userId) {

@@ -5,14 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
-            "request": "launch",
-            "console": "integratedTerminal",
-            "name": "Launch Program",
-            "env": {
-                "NODE_ENV": "development"
-            },
-            "program": "${workspaceFolder}/api/app.js"
+          "type": "node",
+          "request": "launch",
+          "console": "integratedTerminal",
+          "name": "Launch Dev Server",
+          "env": {
+              "NODE_ENV": "development"
+          },
+          "program": "${workspaceFolder}/server.js"
         }
     ]
 }

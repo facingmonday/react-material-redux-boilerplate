@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import {
-  Grid,
-  TextField,
-  Button,
-  FormControl,
-  Typography,
-  withStyles,
-} from '@material-ui/core';
+import { Grid, TextField, Button, FormControl, Typography, withStyles } from '@material-ui/core';
 
 const styles = () => ({
   loginWrapper: {
@@ -45,9 +38,7 @@ class LoginForm extends Component {
   renderError = user => {
     if (user && user.error && user.error.message) {
       return (
-        <div className="alert alert-danger">
-          {user.error.message ? user.error.message : 'Something went wrong'}
-        </div>
+        <div className="alert alert-danger">{user.error.message ? user.error.message : 'Something went wrong'}</div>
       );
     }
     return <span />;
@@ -89,11 +80,7 @@ class LoginForm extends Component {
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.onSubmit}
-                >
+                <Button variant="contained" color="primary" onClick={this.onSubmit}>
                   Submit
                 </Button>
               </Grid>
@@ -111,6 +98,7 @@ LoginForm.propTypes = {
   submitting: PropTypes.bool,
   auth: PropTypes.shape,
   login: PropTypes.func,
+  classes: PropTypes.shape,
 };
 
 export default withStyles(styles)(LoginForm);

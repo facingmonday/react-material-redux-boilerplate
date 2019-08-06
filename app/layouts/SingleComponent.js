@@ -1,9 +1,8 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { HashRouter, Switch, Redirect, Route } from 'react-router-dom';
-import {
-  Grid,
-} from '@material-ui/core';
+import PropTypes from 'prop-types';
+import { withRouter, Route } from 'react-router-dom';
+
+import { Grid } from '@material-ui/core';
 
 const SingleComponent = ({ component: Component, ...rest }) => (
   <Route
@@ -20,4 +19,7 @@ const SingleComponent = ({ component: Component, ...rest }) => (
   />
 );
 
+SingleComponent.propTypes = {
+  component: PropTypes.object,
+};
 export default withRouter(SingleComponent);

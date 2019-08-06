@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const dirApp = path.join(__dirname, 'app');
 const dirApi = path.join(__dirname, 'api');
 const appHtmlTitle = 'Admin';
-const IS_DEV = (process.env.NODE_ENV === 'dev');
+const IS_DEV = process.env.NODE_ENV === 'dev';
 
 module.exports = {
   entry: [
@@ -38,7 +38,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-        IS_DEV: IS_DEV
+      IS_DEV,
     }),
     new webpack.ProvidePlugin({
       _: 'lodash',
@@ -46,7 +46,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'app/index.ejs'),
-      title: appHtmlTitle
+      title: appHtmlTitle,
     }),
     // new webpack.NoErrorsPlugin()
   ],
@@ -65,7 +65,7 @@ module.exports = {
           ],
         },
       },
-        // STYLES
+      // STYLES
       {
         test: /\.css$/,
         use: [
@@ -74,7 +74,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]_[local]--[hash:base64:5]'
+              localIdentName: '[name]_[local]--[hash:base64:5]',
             },
           },
         ],
@@ -87,7 +87,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]_[local]--[hash:base64:5]'
+              localIdentName: '[name]_[local]--[hash:base64:5]',
             },
           },
           'less-loader',
@@ -102,12 +102,14 @@ module.exports = {
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
           },
-        }],
+        ],
       },
     ],
   },

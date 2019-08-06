@@ -1,10 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-import {
-  FETCH_ME,
-  LOGIN_USER,
-  LOGOUT_USER,
-} from '../constants/auth';
+import { FETCH_ME, LOGIN_USER, LOGOUT_USER } from '../constants/auth';
 import {
   fetchMeSuccess,
   fetchMeFailure,
@@ -12,14 +8,10 @@ import {
   loginUserFailure,
   reset,
 } from '../actions/auth';
-import {
-  fetchMe as fetchMeApi,
-  loginUser as loginUserApi,
-} from '../apis/auth';
-import { getCookie, setCookie, deleteCookie } from '../utils';
+import { fetchMe as fetchMeApi, loginUser as loginUserApi } from '../apis/auth';
+import { setCookie, deleteCookie } from '../utils';
 
 function* performFetchMeAction(action) {
-  console.log('performFetchMeAction');
   try {
     const response = yield call(fetchMeApi, action.userId);
     if (response) {
@@ -42,7 +34,7 @@ function* performLoginUserAction(action) {
     yield put(push('/login'));
   }
 }
-function* performLogoutUserAction(){
+function* performLogoutUserAction() {
   console.log('performLogoutUserAction');
   deleteCookie('tf-auth');
   yield put(reset());
@@ -58,9 +50,5 @@ export function* logoutUserSaga() {
   yield takeLatest(LOGOUT_USER, performLogoutUserAction);
 }
 export default function* defaultSaga() {
-  return yield all([
-    fetchMeSaga(),
-    loginUserSaga(),
-    logoutUserSaga(),
-  ]);
+  return yield all([fetchMeSaga(), loginUserSaga(), logoutUserSaga()]);
 }
