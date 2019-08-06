@@ -114,8 +114,10 @@
     "start": "cross-env node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js --progress --config webpack.config.js",
     "build": "node ./node_modules/webpack/bin/webpack -p --progress --config webpack.config.build.js",
     "analyze": "./node_modules/webpack/bin/webpack.js --config webpack.config.js --profile --json > stats.json && ./node_modules/webpack-bundle-size-analyzer/webpack-bundle-size-analyzer stats.json",
+    "lint": "node ./node_modules/eslint/bin/eslint.js .",
     "cosmos": "node ./node_modules/react-cosmos/bin/cosmos",
     "cosmos:export": "node ./node_modules/react-cosmos/bin/cosmos-export"
   },
+  "pre-commit": "lint",
   "private": true
 }
