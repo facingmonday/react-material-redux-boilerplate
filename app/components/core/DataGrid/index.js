@@ -103,49 +103,54 @@ class DataGrid extends Component {
         <Grid item xs={12}>
           {
             (this.props.createForm)
-            ? React.createElement(this.props.createForm, {
-              open: this.state.open,
-              onClose: () => this.setState({ open: false }),
-              onSubmit: (data) => this.props.onCreate(data),
-            })
-            : <CreateForm
-              open={this.state.open}
-              columns={this.props.columns}
-              model={this.state.model}
-              onClose={() => { this.setState({ open: false, model: null }); }}
-              onSubmit={(data) => {
-                this.setState({ open: false });
-                if (data.notificationId) {
-                  return this.props.onUpdate(data);
+              ? React.createElement(this.props.createForm, {
+                open: this.state.open,
+                onClose: () => this.setState({ open: false }),
+                onSubmit: (data) => this.props.onCreate(data),
+              })
+              : <CreateForm
+                open={this.state.open}
+                columns={this.props.columns}
+                model={this.state.model}
+                onClose={() => { this.setState({ open: false, model: null }); }}
+                onSubmit={(data) => {
+                  this.setState({ open: false });
+                  if (data.notificationId) {
+                    return this.props.onUpdate(data);
+                  }
+                  return this.props.onCreate(data);
+                }}
+              />
+          }
+        </Grid>
+        {
+          (this.props.header)
+            ? React.cloneElement(this.props.header, { ...this.props })
+            : <React.Fragment>
+              <Grid item xs={12} sm={9}>
+                {this.createLeftButtons()}
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                {
+                  (this.props.showSearch)
+                    ? <Search
+                      placeholder={this.props.searchInputLabel}
+                      inputProps={{
+                        fullWidth: true,
+                      }}
+                      onChange={(term) => this.props.onChangeSearch(term)}
+                    />
+                    : null
                 }
-                return this.props.onCreate(data);
-                
-              }}
-            />
-          }
-        </Grid>
-        <Grid item xs={12} sm={9}>
-          {this.createLeftButtons()}
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          {
-            (this.props.showSearch)
-            ? <Search
-              placeholder={this.props.searchInputLabel}
-              inputProps={{
-                fullWidth: true,
-              }}
-              onChange={(term) => this.props.onChangeSearch(term)}
-            />
-            : null
-          }
-        </Grid>
+              </Grid>
+            </React.Fragment>
+        }
         <Grid container className={this.props.classes.tableWrapper}>
           <Grid container className={this.props.tableClassName}>
             {
               (this.props.columns)
-              ? <Header columns={this.props.columns} sort={this.props.sort} onSort={this.props.onSort} actionColumns={this.countActionColumns()} showActionColumn={(this.props.showEdit || this.props.showDelete)} />
-              : null
+                ? <Header columns={this.props.columns} sort={this.props.sort} onSort={this.props.onSort} actionColumns={this.countActionColumns()} showActionColumn={(this.props.showEdit || this.props.showDelete)} />
+                : null
             }
             <Grid container className={this.props.classes.tableRowsWrapper}>
               {
@@ -153,17 +158,15 @@ class DataGrid extends Component {
                   if (this.props.loading) {
                     return <div style={{ textAlign: 'center' }}><CircularProgress /></div>;
                   } else if (this.props.data && this.props.data.length) {
-                    return this.props.data.map((row, i) => {
-                      return (
-                        <Row
-                          index={i}
-                          {...this.props}
-                          rowData={row}
-                          onEdit={this.handleEdit}
-                          onDelete={this.handleDelete}
-                        />
-                      );
-                    });
+                    return this.props.data.map((row, i) => (
+                      <Row
+                        index={i}
+                        {...this.props}
+                        rowData={row}
+                        onEdit={this.handleEdit}
+                        onDelete={this.handleDelete}
+                      />
+                    ));
                   }
                   return this.renderNoData();
                 })()
@@ -173,22 +176,22 @@ class DataGrid extends Component {
         </Grid>
         {
           (this.props.data && this.props.data.length && this.props.showPagination)
-          ? <Grid container justify="flex-end">
-            <TablePagination
-              page={(this.props.offset) ? this.props.offset / this.props.limit : 0}
-              rowsPerPage={this.props.limit}
-              rowsPerPageOptions={this.props.rowsPerPageOptions}
-              component="div"
-              count={this.props.count}
-              onChangeRowsPerPage={(evt) => this.props.onChangeLimit(evt.target.value)}
-              onChangePage={(evt, page) => this.props.onChangeOffset(page * this.props.limit)}
-              classes={{
-                root: this.props.classes.pagination,
-                toolbar: this.props.classes.paginationToolbar,
-              }}
-            />
-          </Grid>
-          : null
+            ? <Grid container justify="flex-end">
+              <TablePagination
+                page={(this.props.offset) ? this.props.offset / this.props.limit : 0}
+                rowsPerPage={this.props.limit}
+                rowsPerPageOptions={this.props.rowsPerPageOptions}
+                component="div"
+                count={this.props.count}
+                onChangeRowsPerPage={(evt) => this.props.onChangeLimit(evt.target.value)}
+                onChangePage={(evt, page) => this.props.onChangeOffset(page * this.props.limit)}
+                classes={{
+                  root: this.props.classes.pagination,
+                  toolbar: this.props.classes.paginationToolbar,
+                }}
+              />
+            </Grid>
+            : null
         }
       </Grid>
     );

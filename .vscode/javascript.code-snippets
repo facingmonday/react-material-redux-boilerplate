@@ -60,7 +60,7 @@
 	  ],
 	  "description": "Generates a single action"
 	},
-	"Actions": {
+	"Action CRUD": {
 	  "prefix": "fm_actions",
 	  "body": [
 		"import {",
@@ -204,9 +204,9 @@
 		"}",
 		""
 	  ],
-	  "description": "Saga"
+	  "description": "Generates single saga"
 	},
-	"Generates component": {
+	"Component": {
 	  "prefix": "fm_comp",
 	  "body": [
 		"import React, { Component } from 'react';",
@@ -236,9 +236,9 @@
 		"export default withStyles(styles)(${1:component});",
 		""
 	  ],
-	  "description": "Generates component"
+	  "description": "Generates Component"
 	},
-	"Generates Container": {
+	"Container": {
 	  "prefix": "fm_container",
 	  "body": [
 		"import React from 'react';",
@@ -281,7 +281,7 @@
 	  ],
 	  "description": "Generates Container"
 	},
-	"Generates Sagas for Crud ": {
+	"Saga CRUD": {
 	  "prefix": "fm_saga_crud",
 	  "body": [
 		"import { call, put, takeLatest } from 'redux-saga/effects';",
@@ -389,9 +389,9 @@
 		"}",
 		""
 	  ],
-	  "description": "Generates Saga's for CRUD operations"
+	  "description": "Generates Sagas for CRUD operations"
 	},
-	"Generates APIs ": {
+	"API CRUD": {
 	  "prefix": "fm_apis_crud",
 	  "body": [
 		"import { buildUrl } from './utils';",
@@ -505,9 +505,9 @@
 		"}",
 		""
 	  ],
-	  "description": "Generates APIs "
+	  "description": "Generates APIs for CRUD"
 	},
-	"Generates Selectors": {
+	"Selectors": {
 	  "prefix": "fm_selectors_crud",
 	  "body": [
 		"import { createSelector, createStructuredSelector } from 'reselect';",
@@ -589,4 +589,4 @@
 	  ],
 	  "description": "HOC"
 	}
-  }
+}

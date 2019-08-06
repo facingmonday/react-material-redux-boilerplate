@@ -1,57 +1,106 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
 import {
+  Grid,
   TextField,
   Button,
+  FormControl,
+  withStyles,
 } from '@material-ui/core';
 
-class SignUp extends Component {
-  onSubmit = (values) => {
-    this.props.register(values);
+const styles = () => ({
+  loginWrapper: {
+    marginTop: '100px',
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+  wrapperLogin: {
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    minWidth: 275,
+  },
+});
+
+class SignupForm extends Component {
+  state = {
+    email: '',
+    password: '',
+  }
+  onSubmit = () => {
+    this.props.login(this.state);
   }
   renderError = (user) => {
     if (user && user.error && user.error.message) {
       return (
         <div className="alert alert-danger">
-          { user.error.message ? user.error.message : 'Something went wrong'}
+          { user.error.message ? user.error.message : 'Something went wrong' }
         </div>
       );
     }
-    return null;
+    return <span />;
   }
-
   render() {
-    const { handleSubmit, submitting, user } = this.props;
-    if (this.props.user.authenticated) {
+    const { auth, classes } = this.props;
+    if (auth.user && auth.authenticated) {
       return (<Redirect to="/" />);
     }
     return (
-      <div>
-        {this.renderError(user)}
-        <form onSubmit={this.onSubmit}>
-          <TextField
-            name="email"
-            label="Email"
-            type="text"
-          />
-          <TextField
-            name="password"
-            type="password"
-            label="Password"
-          />
-          <TextField
-            name="confirmPassword"
-            type="password"
-            label="Confirm"
-          />
-          <Button variant={'primary'} onClick={this.onSubmit}>Sign Up</Button>
-        </form>
-        <a href="/auth/facebook" className="btn btn-primary"><span className="fa fa-facebook"></span> Facebook</a>
-      </div>
+      <Grid container className={classes.loginWrapper}>
+        <Grid item xs={12}>
+          { (auth.error) ? this.renderError(auth.error) : null}
+        </Grid>
+        <Grid item xs={12}>
+          <h4>Login</h4>
+          <form className="form" onSubmit={this.onSubmit}>
+            <Grid container>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <TextField
+                    name="email"
+                    placeholder={'email'}
+                    onChange={(e) => this.setState({ email: e.target.value })}
+                    value={this.state.email}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <TextField
+                    name={'password'}
+                    type={'password'}
+                    placeholder={'password'}
+                    onChange={(e) => this.setState({ password: e.target.value })}
+                    value={this.state.password}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <Button variant="contained" color="primary" onClick={this.onSubmit}>Submit</Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Grid>
+        <Link to="/signup">Sign up</Link>
+      </Grid>
     );
   }
 }
 
-export default SignUp;
+SignupForm.propTypes = {
+  handleSubmit: PropTypes.func,
+  submitting: PropTypes.bool,
+  auth: PropTypes.shape,
+  login: PropTypes.func,
+};
+
+export default withStyles(styles)(SignupForm);

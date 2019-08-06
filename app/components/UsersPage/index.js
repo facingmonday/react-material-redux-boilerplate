@@ -1,37 +1,53 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Grid,
-  withStyles,
-} from '@material-ui/core';
+import { Grid, Button, withStyles } from '@material-ui/core';
 
 import DataGrid from '../core/DataGrid';
 
-const styles = ()=> ({
+const styles = () => ({
   container: {
     padding: '20px 40px',
   },
 });
 
-class UsersPage extends Component { // eslint-disable-line react/prefer-stateless-function
+class UsersPage extends Component {
+  // eslint-disable-line react/prefer-stateless-function
   componentDidMount() {
     this.props.fetchUsers();
   }
+
   render() {
-    const { classes, users: { users, loading, error} } = this.props;
+    const {
+      classes,
+      users: { users, loading, error },
+    } = this.props;
     return (
       <Grid container className={classes.container}>
         <Grid item xs={12}>
           <DataGrid
-            idField={'_id'}
+            idField="_id"
             data={users}
             showEdit
             showDelete
             enableCreate
+            header={
+              <Grid container>
+                <Grid item xs={12} sm={9}>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    onClick={() => this.props.navigate('/users/create')}
+                  >
+                    {'Add'}
+                  </Button>
+                </Grid>
+                <Grid item xs={12} sm={3} />
+              </Grid>
+            }
             columns={[
               {
                 label: 'ID',
-                field: 'id',
+                field: '_id',
                 props: {
                   xs: 2,
                 },
@@ -57,9 +73,7 @@ class UsersPage extends Component { // eslint-disable-line react/prefer-stateles
     );
   }
 }
-UsersPage.defaultProps = {
-
-};
+UsersPage.defaultProps = {};
 UsersPage.propTypes = {
   classes: PropTypes.object,
   users: PropTypes.array,

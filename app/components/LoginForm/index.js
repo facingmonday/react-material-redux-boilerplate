@@ -6,6 +6,7 @@ import {
   TextField,
   Button,
   FormControl,
+  Typography,
   withStyles,
 } from '@material-ui/core';
 
@@ -35,40 +36,42 @@ class LoginForm extends Component {
   state = {
     email: '',
     password: '',
-  }
+  };
+
   onSubmit = () => {
     this.props.login(this.state);
-  }
-  renderError = (user) => {
+  };
+
+  renderError = user => {
     if (user && user.error && user.error.message) {
       return (
         <div className="alert alert-danger">
-          { user.error.message ? user.error.message : 'Something went wrong' }
+          {user.error.message ? user.error.message : 'Something went wrong'}
         </div>
       );
     }
     return <span />;
-  }
+  };
+
   render() {
     const { auth, classes } = this.props;
     if (auth.user && auth.authenticated) {
-      console.log('auth', auth);
-      return (<Redirect to="/" />);
+      return <Redirect to="/" />;
     }
     return (
       <Grid container className={classes.loginWrapper}>
         <Grid item xs={12}>
-          { (auth.error) ? this.renderError(auth.error) : null}
+          {auth.error ? this.renderError(auth.error) : null}
         </Grid>
         <Grid item xs={12}>
-          <h4>Login</h4>
+          <Typography variant="h4">Login</Typography>
           <form className="form" onSubmit={this.onSubmit}>
             <Grid container>
               <Grid item xs={12}>
                 <FormControl fullWidth>
                   <TextField
                     name="email"
-                    placeholder={'email'}
+                    placeholder="email"
                     onChange={e => this.setState({ email: e.target.value })}
                     value={this.state.email}
                   />
@@ -77,16 +80,22 @@ class LoginForm extends Component {
               <Grid item xs={12}>
                 <FormControl fullWidth>
                   <TextField
-                    name={'password'}
-                    type={'password'}
-                    placeholder={'password'}
+                    name="password"
+                    type="password"
+                    placeholder="password"
                     onChange={e => this.setState({ password: e.target.value })}
                     value={this.state.password}
                   />
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
-                <Button variant="contained" color="primary" onClick={this.onSubmit}>Submit</Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={this.onSubmit}
+                >
+                  Submit
+                </Button>
               </Grid>
             </Grid>
           </form>
