@@ -13,7 +13,6 @@ export function fetchUsers() {
     mode: 'cors',
     credentials: 'include',
   }).then(response => {
-    console.log('response', response);
     if (response.status === 200) {
       return response.json();
     }
