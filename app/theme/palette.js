@@ -9,6 +9,6 @@ export default {
     main: '#003DA6',
     light: '#ff7961',
     dark: '#ba000d',
-    contrastText: '#FFFFFF',
+    contrastText: '#fff',
   },
 };

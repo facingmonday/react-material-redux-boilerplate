@@ -65,7 +65,26 @@ app.get('/products', (req, res) =>
 app.get('/api/users', (req, res) => {
   console.log('GET');
   return res.status(200).json({
-    stats: 1,
+    offset: 2,
+    limit: 100,
+    sort: [
+      {
+        field: this.name,
+        direction: 'ASC',
+      },
+    ],
+    searchTerm: 'yahoo',
+    filter: [
+      {
+        field: 'name',
+        filter: 'jay',
+      },
+      {
+        field: 'active',
+        value: true,
+      },
+    ],
+    total: 29823,
     results: [
       {
         id: '1239801238',

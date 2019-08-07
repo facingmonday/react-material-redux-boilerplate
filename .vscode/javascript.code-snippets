@@ -311,7 +311,7 @@
 	  "description": "Generates Component"
 	},
 	"Container": {
-	  "prefix": "fm_container",
+	  "prefix": "mc_container",
 	  "body": [
 		"import React from 'react';",
 		"import PropTypes from 'prop-types';",
