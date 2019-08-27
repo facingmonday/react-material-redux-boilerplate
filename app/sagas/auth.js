@@ -1,13 +1,7 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import { FETCH_ME, LOGIN_USER, LOGOUT_USER } from '../constants/auth';
-import {
-  fetchMeSuccess,
-  fetchMeFailure,
-  loginUserSuccess,
-  loginUserFailure,
-  reset,
-} from '../actions/auth';
+import { fetchMeSuccess, fetchMeFailure, loginUserSuccess, loginUserFailure, reset } from '../actions/auth';
 import { fetchMe as fetchMeApi, loginUser as loginUserApi } from '../apis/auth';
 import { setCookie, deleteCookie } from '../utils';
 
@@ -35,7 +29,6 @@ function* performLoginUserAction(action) {
   }
 }
 function* performLogoutUserAction() {
-  console.log('performLogoutUserAction');
   deleteCookie('tf-auth');
   yield put(reset());
   yield put(push('/login'));

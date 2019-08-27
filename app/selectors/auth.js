@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
+import config from '../../config/defaults';
 
-const selectAuth = (state, props) => state.auth;
+const selectAuth = state => state.auth;
 
 export const selectUser = () =>
   createSelector(
@@ -41,4 +42,9 @@ export const selectAuthObject = () =>
       error,
       loaded,
     }),
+  );
+export const selectNavigation = () =>
+  createSelector(
+    selectAuth,
+    auth => (auth && auth.user && auth.user.navigation) ? auth.user.navigation : config.navigation, // eslint-disable-line
   );

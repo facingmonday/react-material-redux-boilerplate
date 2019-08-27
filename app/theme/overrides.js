@@ -30,12 +30,6 @@ export default {
       // },
     },
   },
-  // MuiGrid: {
-  //   container: {
-  //     'border-radius': '4px 4px 0px 0px',
-  //   },
-  // },
-  
   MuiListItemText: {
     root: {
       fontFamily: '"Helvetica", "Arial", sans-serif',
@@ -46,27 +40,11 @@ export default {
       fontFamily: '"Helvetica", "Arial", sans-serif',
       // textTransform: 'uppercase',
       fontWeight: '500',
+      textDecoration: 'none',
     },
     secondary: {
       fontSize: '13px',
       lineHeight: '14px',
-    },
-  },
-  MuiPaper: {
-    root: {
-      'box-shadow': '0',
-      // border: '.5px solid black',
-      overflowX: 'auto',
-    },
-    rounded: {
-      borderRadius: '4px',
-    },
-    elevation1: {
-      boxShadow: 'none',
-      border: '1px solid #4A5055',
-    },
-    elevation2: {
-      boxShadow: '4px 4px 7px 0 rgba(74,79,85,0.5)',
     },
   },
   MuiTypography: {
@@ -82,9 +60,11 @@ export default {
     },
   },
   MuiFormHelperText: {
-    error: {
-      fontWeight: '600',
-      textTransform: 'uppercase',
+    root: {
+      error: {
+        fontWeight: '600',
+        textTransform: 'uppercase',
+      },
     },
   },
   MuiInput: {
@@ -187,8 +167,10 @@ export default {
     },
   },
   MuiTab: {
-    selected: {
-      color: '#003DA6',
+    root: {
+      selected: {
+        color: '#003DA6',
+      },
     },
   },
-}
+};

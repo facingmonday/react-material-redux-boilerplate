@@ -1,5 +1,7 @@
 import createWrapperProxy from 'react-cosmos-wrapper-proxy';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import createRouterProxy from 'react-cosmos-router-proxy';
+
 import theme from './app/theme';
 
 const muiProxy = createWrapperProxy({
@@ -16,4 +18,4 @@ const muiProxy = createWrapperProxy({
   },
 });
 
-export default [muiProxy];
+export default [createRouterProxy(), muiProxy];

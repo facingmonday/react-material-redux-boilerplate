@@ -23,9 +23,9 @@ const withConnect = connect(
 const withAccount = Component => props => <Component {...props} />;
 
 const wrappedComponent = compose(
+  withAccount,
   withConnect,
   withRouter,
-  withAccount,
 );
 
 export default wrappedComponent;

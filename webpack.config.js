@@ -8,11 +8,7 @@ const appHtmlTitle = 'Admin';
 const IS_DEV = process.env.NODE_ENV === 'dev';
 
 module.exports = {
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/dev-server',
-    './app/app',
-  ],
+  entry: ['webpack-dev-server/client?http://localhost:8080', 'webpack/hot/dev-server', './app/app'],
   output: {
     pathinfo: true,
     path: path.join(__dirname, '/public/'),
@@ -56,16 +52,14 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /(node_modules)/,
+      },
+      {
+        test: /\.(jpe?g|png|gif)$/,
+        loader: 'file-loader',
         options: {
-          presets: ['es2015', 'react'],
-          plugins: [
-            'transform-class-properties',
-            'transform-object-rest-spread',
-            'transform-runtime',
-          ],
+          name: '[path][name].[ext]',
         },
       },
-      // STYLES
       {
         test: /\.css$/,
         use: [
@@ -78,27 +72,6 @@ module.exports = {
             },
           },
         ],
-      },
-      {
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]_[local]--[hash:base64:5]',
-            },
-          },
-          'less-loader',
-        ],
-      },
-      {
-        test: /\.(jpe?g|png|gif)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[ext]',
-        },
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,

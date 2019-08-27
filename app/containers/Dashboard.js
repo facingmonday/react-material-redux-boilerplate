@@ -5,16 +5,12 @@ import { compose } from 'redux';
 import { fetchDashboard } from '../actions/dashboard';
 import Dashboard from '../components/Dashboard';
 
-import {
-  selectDashboardLoading,
-  selectDashboardError,
-  selectDashboard,
-} from '../selectors/dashboard';
+import { selectDashboardLoading, selectDashboardError, selectDashboard } from '../selectors/dashboard';
 
 const mapStateToProps = createStructuredSelector({
-  loading: selectDashboardLoading,
-  error: selectDashboardError,
-  dashboard: selectDashboard,
+  loading: selectDashboardLoading(),
+  error: selectDashboardError(),
+  dashboard: selectDashboard(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -23,7 +19,10 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 
 export default compose(
   withConnect,

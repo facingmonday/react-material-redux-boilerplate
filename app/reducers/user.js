@@ -20,13 +20,18 @@ import { RESET } from '../constants/auth';
 
 const initialState = {
   usersList: {
-    users: [],
     error: null,
     loading: false,
-    stats: null,
+    offset: 0,
+    limit: 20,
+    sort: [],
+    searchTerm: '',
+    filters: [],
+    total: 0,
+    results: [],
   },
   activeUser: {
-    user: null,
+    user: {},
     error: null,
     loading: false,
   },
@@ -46,16 +51,25 @@ export default (state = initialState, action) => {
     case FETCH_USERS:
       return {
         ...state,
-        usersList: { ...initialState.usersList, loading: true },
+        usersList: {
+          ...state.usersList,
+          ...action.options,
+          loading: true,
+        },
       };
     case FETCH_USERS_SUCCESS:
       return {
         ...state,
         usersList: {
-          users: action.results,
-          stats: action.stats,
+          results: action.results,
           error: null,
           loading: false,
+          offset: action.offset,
+          limit: action.limit,
+          sort: action.sort,
+          searchTerm: action.searchTerm,
+          filters: action.filters,
+          total: action.total,
         },
       };
     case FETCH_USERS_FAILURE:
@@ -117,7 +131,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         activeUser: {
-          user: action.user,
+          ...state.activeUser,
           loading: false,
           error: action.error,
         },

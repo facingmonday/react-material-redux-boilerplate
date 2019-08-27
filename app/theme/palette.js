@@ -1,4 +1,8 @@
 export default {
+  menuIconColor: '#fff',
+  menuTextColor: '#fff',
+  menuBackgroundColor: '#050321',
+  lightBackgroundColor: '#fcfcfc',
   primary: {
     main: '#ec1c2c',
     light: '#757ce8',

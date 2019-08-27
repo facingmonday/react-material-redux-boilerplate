@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 // Layouts
-import FullPage from '../layouts/FullPage';
-import SingleComponent from '../layouts/SingleComponent';
+import { FullPage, SingleComponent } from '../components/Layouts';
 
 // Containers
 import Dashboard from './Dashboard';
@@ -21,13 +20,9 @@ import { fetchMe } from '../actions/auth';
 import { getCookie } from '../utils';
 
 class App extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const cookie = getCookie('tf-auth');
     this.props.fetchMe(cookie);
-  }
-
-  authorizedRoute(HOComponent) {
-    return HOComponent;
   }
 
   render() {
@@ -61,7 +56,7 @@ function mapDispatchToProps(dispatch) {
 
 App.propTypes = {
   fetchMe: PropTypes.func,
-  auth: PropTypes.shape,
+  auth: PropTypes.any,
 };
 
 export default withRouter(

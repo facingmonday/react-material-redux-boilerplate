@@ -42,8 +42,7 @@ export function fetchUsers(options) {
 export function fetchUsersSuccess(response) {
   return {
     type: FETCH_USERS_SUCCESS,
-    stats: response.stats,
-    results: response.results,
+    ...response,
   };
 }
 export function fetchUsersFailure(error) {

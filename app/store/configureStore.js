@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 // import { createBrowserHistory } from 'history';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
 // import { createLogger } from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
@@ -9,7 +9,7 @@ import rootReducer from '../reducers';
 import sagas from '../sagas';
 
 // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-export const history = createHistory();
+export const history = createBrowserHistory();
 
 export default function configureStore() {
   // const logger = createLogger({
@@ -20,9 +20,7 @@ export default function configureStore() {
     typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ // eslint-disable-line
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) // eslint-disable-line
       : compose;
-  const enhancer = composeEnhancers(
-    applyMiddleware(routerMiddleware(history), sagaMiddleware),
-  );
+  const enhancer = composeEnhancers(applyMiddleware(routerMiddleware(history), sagaMiddleware));
   const store = createStore(rootReducer(history), enhancer);
 
   // Start all of our sagas

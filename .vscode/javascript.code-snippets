@@ -281,33 +281,24 @@
 	"Component": {
 	  "prefix": "mc_comp",
 	  "body": [
-		"import React, { Component } from 'react';",
-		"import PropTypes from 'prop-types';",
-		"import {",
-		"  withStyles,",
-		"} from '@material-ui/core';",
-		"",
-		"const styles = () => ({",
-		"});",
-		"",
-		"class ${1:component} extends Component { // eslint-disable-line react/prefer-stateless-function",
-		"  render() {",
-		"    const { classes } = this.props;",
-		"    return (",
-		"      <div></div>",
-		"    );",
-		"  }",
-		"}",
-		"${1:component}.defaultProps = {",
-		"",
-		"};",
-		"${1:component}.propTypes = {",
-		"  classes: PropTypes.object,",
-		"};",
-		"",
-		"export default withStyles(styles)(${1:component});",
-		""
-	  ],
+      "import React from 'react';",
+      "import PropTypes from 'prop-types';",
+      "import { makeStyles } from '@material-ui/styles';",
+      "import styles from './${1:Name}.styles';",
+      "const useStyles = makeStyles(styles);",
+      "",
+      "const ${1:Name} = ({ ${3:prop} }) => {",
+      "  const classes = useStyles();",
+      "  return <span className={classes.${2:camelCase}}>{${3:prop}}</span>;",
+      "};",
+      "${1:Name}.defaultProps = {};",
+      "${1:Name}.propTypes = {",
+      "  ${3:prop}: PropTypes.string,",
+      "};",
+      "",
+      "export default withStyles(styles)(${1:Name});",
+      ""
+    ],
 	  "description": "Generates Component"
 	},
 	"Container": {
@@ -580,5 +571,74 @@
 		""
 	  ],
 	  "description": "HOC"
-	}
+  },
+  "Fixture": {
+    "prefix": "mc_fixture",
+    "body": [
+      "import ${1:Name} from './${1:Name}';",
+      "",
+      "export default [",
+      "  {",
+      "    component: ${1:Name},",
+      "    name: '${1:Name}',",
+      "    props: {",
+      "      classes: {},",
+      "      props: {},",
+      "      mui: true,",
+      "    },",
+      "  },",
+      "];"
+    ],
+    "description": "Fixture"
+  },
+  "Server API Endpoint": {
+    "prefix": "mc_server_api",
+    "body": [
+      "app.get('/api/${1:lowercaseName}', (req, res) => {",
+      "  return res.status(200).json({",
+      "    offset: 0,",
+      "    limit: 100,",
+      "    sort: [],",
+      "    searchTerm: null,",
+      "    filter: [],",
+      "    total: 29823,",
+      "    results: [],",
+      "  });",
+      "});",
+      "",
+      "app.get('/api/${1:lowercaseName}/:id', (req, res) => {",
+      "  res.status(200).json({});",
+      "});",
+      "",
+      "app.post('/api/${1:lowercaseName}', (req, res) => {",
+      "  res.sendStatus(200);",
+      "});",
+      "",
+      "app.put('/api/${1:lowercaseName}/:id', (req, res) => {",
+      "  return res.sendStatus(204);",
+      "});",
+      "",
+      "app.delete('/api/${1:lowercaseName}/:id', (req, res) => {",
+      "  return res.sendStatus(202);",
+      "});"
+    ],
+    "description": "Server API Endpoint"
+  },
+  "Component Test": {
+    "prefix": "mc_component_test",
+    "body": [
+      "import React from 'react';",
+      "import { shallow } from 'enzyme';",
+      "import ${1:ComponentName} from './${1:ComponentName}';",
+      "",
+      "describe('<${1:ComponentName} />', () => {",
+      "  it('Renders component', () => {",
+      "    const component = shallow(<${1:ComponentName} />);",
+      "    expect(component).toHaveLength(1);",
+      "  });",
+      "});",
+      ""
+    ],
+    "description": "Component Test"
+  }
 }

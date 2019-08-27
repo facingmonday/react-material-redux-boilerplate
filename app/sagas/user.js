@@ -1,4 +1,4 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest, select } from 'redux-saga/effects';
 import { FETCH_USERS, FETCH_USER, SAVE_USER, DELETE_USER } from '../constants/user';
 import {
   fetchUsersSuccess,
@@ -10,6 +10,7 @@ import {
   deleteUserSuccess,
   deleteUserFailure,
 } from '../actions/user';
+import { logoutUser } from '../actions/auth';
 import {
   fetchUsers as fetchUsersApi,
   fetchUser as fetchUserApi,
@@ -17,18 +18,25 @@ import {
   updateUser as updateUserApi,
   deleteUser as deleteUserApi,
 } from '../apis/user';
+import { selectUsersOptions } from '../selectors/user';
 
 export function* fetchUsersSaga() {
   yield takeLatest(FETCH_USERS, performFetchUsersAction);
 }
 
 function* performFetchUsersAction(action) {
+  const currentOptions = yield select(selectUsersOptions());
+  const request = { ...currentOptions, ...action.options };
   try {
-    const response = yield call(fetchUsersApi, action.options);
+    const response = yield call(fetchUsersApi, request);
     if (response) {
+      console.log('response', response);
       yield put(fetchUsersSuccess(response));
     }
   } catch (e) {
+    if (e.code === 401 || e.code === '401') {
+      yield put(logoutUser('/login'));
+    }
     yield put(fetchUsersFailure(e));
   }
 }
@@ -56,7 +64,11 @@ function* performSaveUserAction(action) {
       yield put(saveUserSuccess(response));
     }
   } catch (e) {
-    yield put(saveUserFailure(e));
+    if (e.code === 401) {
+      yield put(logoutUser());
+    } else {
+      yield put(saveUserFailure(e));
+    }
   }
 }
 export function* deleteUserSaga() {

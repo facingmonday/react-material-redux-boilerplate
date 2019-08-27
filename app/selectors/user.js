@@ -28,3 +28,15 @@ export const selectActiveUser = () =>
     selectUsersDomain,
     users => users.activeUser,
   );
+
+export const selectUsersOptions = () =>
+  createSelector(
+    selectUsers,
+    usersListObject => ({
+      limit: usersListObject.limit,
+      offset: usersListObject.offset,
+      searchTerm: usersListObject.searchTerm,
+      filters: usersListObject.filters,
+      sort: usersListObject.sort,
+    }),
+  );

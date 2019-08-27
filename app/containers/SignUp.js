@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { createUser } from '../actions/user';
+import { saveUser } from '../actions/user';
 import SignUpForm from '../components/SignUpForm';
 
 const mapStateToProps = state => ({
@@ -9,7 +8,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  register: data => dispatch(createUser(data)),
+  register: data => dispatch(saveUser(data)),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUpForm));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(SignUpForm),
+);
